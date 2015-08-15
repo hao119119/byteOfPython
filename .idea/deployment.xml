@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" showNewOnSourceInSync="false">
+    <serverData>
+      <paths name="10.106.1.74">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/cc/my_python" local="$PROJECT_DIR$/remoteTest" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
