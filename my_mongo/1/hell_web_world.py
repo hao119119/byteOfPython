@@ -15,6 +15,11 @@ def index():
 
     return '<b>Hello %s!<b>' % item['name']
 
+@bottle.route('/test')
+def test_page():
+    return 'this is a test page'
+
+bottle.debug(True)
 bottle.run(host='localhost', port=8082)
 
 # command
