@@ -1,0 +1,48 @@
+ services:
+  - name: oozie-service-broker
+    id: "3101b971-1044-cccc-1234-9ded2e028079"
+    description: oozie service for application development and testing
+    plan_updateable: true
+    bindable: true
+    tags:
+      - relational
+    metadata:
+      displayName: "Oozie Dev"
+      imageUrl: ""
+      longDescription: "A oozie service for development and testing."
+      providerDisplayName: "Inspur Software"
+      documentationUrl: "http://oozie.apache.org/docs/4.2.0/index.html"
+      supportUrl: "http://oozie.apache.org/"
+    dashboard_client:
+      id: 'p-oozie-client'
+      secret: 'p-oozie-secret'
+      redirect_uri: 'http://10.80.130.98:3000/manage/auth/cloudfoundry/callback'
+    plans:
+          - name: small
+            id: "2451fa22-df16-cccc-1234-1f682d3dcdc9"
+            description: "small cluster for oozie"
+            max_storage_mb: 5
+            max_user_connections: 5
+            displayName: "small"
+            metadata:
+              costs:
+                - unit: "MONTHLY"
+                  amount:
+                    usd: 0
+              bullets:
+                - 5 instance of datanode
+                - 5 task
+          - name: big
+            id: "f488f238-f364-cccc-1234-cacfc49db053"
+            description: "big cluster for oozie"
+            max_storage_mb: 10
+            max_user_connections: 10
+            displayName: "big"
+            metadata:
+              costs:
+                - unit: "MONTHLY"
+                  amount:
+                    usd: 0
+              bullets:
+                - 10 instance of datanode
+                - 10 task

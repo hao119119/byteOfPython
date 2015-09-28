@@ -158,3 +158,75 @@ ax.text(-250, 445, 'Data Source: stats.nba.com'
         fontsize=12)
 
 plt.show()
+
+
+import urllib
+# we pass in the link to the image as the 1st argument
+# the 2nd argument tells urlretrieve what we want to scrape
+pic = urllib.urlretrieve("http://stats.nba.com/media/players/230x185/201935.png",
+                                "201935.png")
+
+# urlretrieve returns a tuple with our image as the first
+# element and imread reads in the image as a
+# mutlidimensional numpy array so matplotlib can plot it
+harden_pic = plt.imread(pic[0])
+
+# plot the image
+plt.imshow(harden_pic)
+plt.show()
+
+
+from matplotlib.offsetbox import OffsetImage
+
+# create our jointplot
+
+# get our colormap for the main kde plot
+# Note we can extract a color from cmap to use for
+# the plots that lie on the side and top axes
+cmap = plt.cm.YlOrRd_r
+
+# n_levels sets the number of contour lines for the main kde plot
+joint_shot_chart = sns.jointplot(shot_df.LOC_X, shot_df.LOC_Y, stat_func=None,
+                                 kind='kde', space=0, color=cmap(0.1),
+                                 cmap=cmap, n_levels=50)
+
+joint_shot_chart.fig.set_size_inches(12, 11)
+
+# A joint plot has 3 Axes, the first one called ax_joint
+# is the one we want to draw our court onto and adjust some other settings
+ax = joint_shot_chart.ax_joint
+draw_court(ax)
+
+# Adjust the axis limits and orientation of the plot in order
+# to plot half court, with the hoop by the top of the plot
+ax.set_xlim(-250, 250)
+ax.set_ylim(422.5, -47.5)
+
+# Get rid of axis labels and tick marks
+ax.set_xlabel('')
+ax.set_ylabel('')
+ax.tick_params(labelbottom='off', labelleft='off')
+
+# Add a title
+ax.set_title('James Harden FGA \n2014-15 Reg. Season',
+             y=1.2, fontsize=18)
+
+# Add Data Scource and Author
+ax.text(-250, 445, 'Data Source: stats.nba.com'
+        '\nAuthor: Savvas Tjortjoglou (savvastjortjoglou.com)',
+        fontsize=12)
+
+# Add Harden's image to the top right
+# First create our OffSetImage by passing in our image
+# and set the zoom level to make the image small enough
+# to fit on our plot
+img = OffsetImage(harden_pic, zoom=0.6)
+# Pass in a tuple of x,y coordinates to set_offset
+# to place the plot where you want, I just played around
+# with the values until I found a spot where I wanted
+# the image to be
+img.set_offset((250, 425))
+# add the image
+ax.add_artist(img)
+
+plt.show()
