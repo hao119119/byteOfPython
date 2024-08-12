@@ -6,7 +6,7 @@
 trigger:
 - master
 
-pool: AliSinPool
+pool: Default
 
 steps:
 - script: echo Hello, world!
